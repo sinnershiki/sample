@@ -3,23 +3,23 @@ version: "3.8"
 services:
   fe:
     build:
-      context: ./apps/fe
-      dockerfile: docker/fe/Dockerfile
+      context: .
+      dockerfile: ./docker/fe/Dockerfile
     volumes:
-      - ./apps/fe:/app/apps/fe
+      - ./apps/fe/src:/app/src
     ports:
-      - "8080:8080"
+      - "3000:3000"
     networks:
       - sample
 
   api:
     build:
-      context: ./apps/api
-      dockerfile: docker/api/Dockerfile
+      context: .
+      dockerfile: ./docker/api/Dockerfile
     volumes:
-      - ./apps/api:/app/apps/api
+      - ./apps/api/src:/app/src
     ports:
-      - "3000:3000"
+      - "4000:4000"
     networks:
       - sample
 
@@ -38,3 +38,6 @@ services:
 networks:
   sample:
     name: sample
+
+volumes:
+  db-store:

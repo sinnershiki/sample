@@ -1,7 +1,13 @@
 FROM node:16.13.1-alpine
 
-WORKDIR /apps/api
+WORKDIR /app
 
-RUN npm i -g @nestjs/cli
+RUN mkdir -p /app
 
-CMD ["npm" "run"]
+COPY apps/api/. .
+
+RUN npm i
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]

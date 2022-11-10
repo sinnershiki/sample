@@ -1,7 +1,13 @@
-FROM node:16.15.0-alpine
+FROM node:16.13.1-alpine
 
-WORKDIR /apps/fe
+WORKDIR /app
+
+RUN mkdir -p /app
+
+COPY apps/fe/. .
 
 RUN npm i
 
-CMD ["npm" "run"]
+EXPOSE 4000
+
+CMD ["npm", "run", "start"]
